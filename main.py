@@ -1,16 +1,20 @@
-# This is a sample Python script.
-
-# Press Ctrl+F5 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
-
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press F9 to toggle the breakpoint.
+from fastapi import FastAPI
+from app.api.routers.password_router import router as password_router
+from app.api.routers.passphrase_router import router as passphrase_router
+from app.api.routers.auth_router import router as auth_router
 
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
+app = FastAPI(
+    title="Password Security Service",
+    version="1.0"
+)
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+
+@app.get("/")
+def root():
+    return {"message": "Password Security API running"}
+
+
+app.include_router(password_router)
+app.include_router(passphrase_router)
+app.include_router(auth_router)

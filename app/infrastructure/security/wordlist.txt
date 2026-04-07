@@ -1,0 +1,15 @@
+sun
+river
+tiger
+moon
+cactus
+rocket
+ocean
+forest
+cloud
+desert
+stone
+laptop
+coffee
+dragon
+planet
