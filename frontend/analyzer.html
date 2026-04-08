@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Analyzer | Password Security</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+</head>
+<body>
+
+<div class="layout">
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <div class="sidebar-header">
+      <i class="ph ph-shield-check"></i> Security
+      <button class="mobile-nav-toggle" onclick="toggleNav()"><i class="ph ph-list"></i></button>
+    </div>
+    <div class="nav-links" id="navLinks">
+      <a href="index.html"><i class="ph ph-squares-four"></i> Dashboard</a>
+      <a href="analyzer.html" class="active"><i class="ph ph-magnifying-glass"></i> Analyzer</a>
+      <a href="generator.html"><i class="ph ph-key"></i> Generator</a>
+      <a href="twofa.html"><i class="ph ph-device-mobile"></i> 2FA</a>
+      <a href="stats.html"><i class="ph ph-chart-bar"></i> Global Stats</a>
+    </div>
+    <div class="sidebar-footer">
+      <i class="ph ph-check-circle" style="color: #22c55e;"></i> v1.0.0 System Secure
+    </div>
+  </div>
+
+  <!-- Content -->
+  <div class="content">
+
+    <h1 class="page-title"><i class="ph ph-magnifying-glass"></i> Password Analyzer</h1>
+
+    <div class="card action-box">
+      <h2><i class="ph ph-scan"></i> Analyze Strength</h2>
+      <p style="margin-bottom: 20px;">Type a password below to see its strength score and receive tailored feedback.</p>
+      
+      <div class="input-group">
+        <input type="password" id="passwordInput" placeholder="Enter a password to analyze..." onkeyup="liveValidate()">
+        <button class="icon-btn" onclick="togglePassword()" title="Toggle View"><i class="ph ph-eye"></i></button>
+      </div>
+      
+      <!-- Live Typing Validation Checkmarks -->
+      <div id="live-checks" style="margin-bottom: 20px; font-size: 14px; display: grid; grid-template-columns: 1fr 1fr; gap: 8px;">
+        <span id="chk-len" style="color: #64748b;"><i class="ph ph-x"></i> 12+ Characters</span>
+        <span id="chk-upper" style="color: #64748b;"><i class="ph ph-x"></i> Uppercase Letter</span>
+        <span id="chk-num" style="color: #64748b;"><i class="ph ph-x"></i> Number (0-9)</span>
+        <span id="chk-sym" style="color: #64748b;"><i class="ph ph-x"></i> Symbol (!@#$)</span>
+      </div>
+      
+      <div class="input-group">
+        <button onclick="checkPassword()" style="flex: 1;"><i class="ph ph-target"></i> Analyze Password</button>
+        <button onclick="checkBreach()" class="secondary-btn" style="flex: 1; border: 1px solid #ef4444; color: #ef4444; background: transparent; margin-top: 0;">
+          <i class="ph ph-warning"></i> Check Leaks
+        </button>
+      </div>
+
+      <div class="strength">
+        <div id="bar"></div>
+      </div>
+
+      <div id="result"></div>
+    </div>
+
+  </div>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2FA | Password Security</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+</head>
+<body>
+
+<div class="layout">
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <div class="sidebar-header">
+      <i class="ph ph-shield-check"></i> Security
+      <button class="mobile-nav-toggle" onclick="toggleNav()"><i class="ph ph-list"></i></button>
+    </div>
+    <div class="nav-links" id="navLinks">
+      <a href="index.html"><i class="ph ph-squares-four"></i> Dashboard</a>
+      <a href="analyzer.html"><i class="ph ph-magnifying-glass"></i> Analyzer</a>
+      <a href="generator.html"><i class="ph ph-key"></i> Generator</a>
+      <a href="twofa.html" class="active"><i class="ph ph-device-mobile"></i> 2FA</a>
+      <a href="stats.html"><i class="ph ph-chart-bar"></i> Global Stats</a>
+    </div>
+    <div class="sidebar-footer">
+      <i class="ph ph-check-circle" style="color: #22c55e;"></i> v1.0.0 System Secure
+    </div>
+  </div>
+
+  <!-- Content -->
+  <div class="content">
+
+    <h1 class="page-title"><i class="ph ph-device-mobile"></i> Two Factor Authentication</h1>
+
+    <div class="card action-box">
+      <h2><i class="ph ph-qr-code"></i> Step 1: Setup 2FA</h2>
+      <p>Click the button below to generate a new 2FA secret. Scan the QR Code using an authenticator app (e.g., Google Authenticator, Authy).</p>
+
+      <button onclick="setup2FA()" style="margin-top: 15px;"><i class="ph ph-arrows-clockwise"></i> Generate 2FA Secret</button>
+      
+      <div id="setup-result" class="hidden">
+        <div id="qrcode" style="margin: 20px auto; display: flex; justify-content: center; padding: 15px; background: white; border-radius: 8px; width: max-content;"></div>
+        <div class="secret-box" id="secretDisplay"></div>
+        <p style="font-size: 0.9em; margin-top: 10px; color: #cbd5e1;"><i class="ph ph-info"></i> Scan this QR Code. The secret is also preserved underneath.</p>
+      </div>
+    </div>
+
+    <div class="card action-box">
+      <h2><i class="ph ph-password"></i> Step 2: Verify Code</h2>
+      <p style="margin-bottom: 15px;">After binding the secret to your Authenticator, provide the 6-digit PIN below to verify.</p>
+
+      <div class="input-group">
+        <input type="text" id="otp" placeholder="Enter 6-digit code..." maxlength="6">
+      </div>
+
+      <button onclick="verify2FA()" style="width: 100%"><i class="ph ph-check-circle"></i> Verify Code</button>
+
+      <div id="verify-result"></div>
+    </div>
+
+  </div>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Generator | Password Security</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+</head>
+<body>
+
+<div class="layout">
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <div class="sidebar-header">
+      <i class="ph ph-shield-check"></i> Security
+      <button class="mobile-nav-toggle" onclick="toggleNav()"><i class="ph ph-list"></i></button>
+    </div>
+    <div class="nav-links" id="navLinks">
+      <a href="index.html"><i class="ph ph-squares-four"></i> Dashboard</a>
+      <a href="analyzer.html"><i class="ph ph-magnifying-glass"></i> Analyzer</a>
+      <a href="generator.html" class="active"><i class="ph ph-key"></i> Generator</a>
+      <a href="twofa.html"><i class="ph ph-device-mobile"></i> 2FA</a>
+      <a href="stats.html"><i class="ph ph-chart-bar"></i> Global Stats</a>
+    </div>
+    <div class="sidebar-footer">
+      <i class="ph ph-check-circle" style="color: #22c55e;"></i> v1.0.0 System Secure
+    </div>
+  </div>
+
+  <!-- Content -->
+  <div class="content">
+
+    <h1 class="page-title"><i class="ph ph-key"></i> Password Generator</h1>
+
+    <div class="card action-box">
+      <h2><i class="ph ph-lock-key"></i> Generate Secure Key</h2>
+      <p style="margin-bottom: 20px;">Generate a strong, unpredictable password containing mixed characters.</p>
+
+      <div class="input-group">
+        <input type="password" id="passwordInput" placeholder="Generated string will appear here..." readonly>
+        <button class="icon-btn" onclick="togglePassword()" title="Toggle View"><i class="ph ph-eye"></i></button>
+        <button class="icon-btn" onclick="copyToClipboard()" title="Copy to Clipboard" style="background: #3b82f6;"><i class="ph ph-copy"></i></button>
+      </div>
+
+      <div class="input-group">
+        <button onclick="generatePassword()" style="flex: 1;"><i class="ph ph-lightning"></i> Complex Password</button>
+        <button onclick="generatePassphrase()" class="secondary-btn" style="flex: 1; border: 1px solid #10b981; color: #10b981; background: transparent; margin-top: 0;">
+          <i class="ph ph-text-t"></i> Passphrase
+        </button>
+      </div>
+
+      <div id="result"></div>
+    </div>
+
+    <!-- Vault Area -->
+    <div class="card action-box" style="margin-top: 20px;">
+      <h2><i class="ph ph-archive"></i> Local Vault History</h2>
+      <p style="margin-bottom: 15px; font-size: 14px; color: #cbd5e1;">Your recently generated passwords (Stored locally in your browser only):</p>
+      
+      <div id="vaultList" style="background: rgba(0,0,0,0.2); padding: 10px; border-radius: 8px; min-height: 50px;">
+        <!-- Vault Items -->
+      </div>
+      
+      <button onclick="clearVault()" class="secondary-btn" style="margin-top: 15px; border-color: #ef4444; color: #ef4444; padding: 8px; width: auto; align-self: flex-start;">
+        <i class="ph ph-trash"></i> Clear Vault
+      </button>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  window.onload = function() {
+    if(typeof renderVault === 'function') renderVault();
+  }
+</script>
+<script src="script.js"></script>
+</body>
+</html>
