@@ -317,7 +317,7 @@ async function setup2FA() {
   const secretDisplay = document.getElementById("secretDisplay");
 
   try {
-    const res = await fetch(`${API_URL}/2fa/setup`, { 
+    const res = await fetch(`${API_URL}/2fa/setup-demo`, { 
         method: "POST",
         headers: getAuthHeaders()
     });
@@ -363,7 +363,7 @@ async function verify2FA() {
   }
 
   try {
-    const res = await fetch(`${API_URL}/2fa/verify`, {
+    const res = await fetch(`${API_URL}/2fa/verify-demo`, {
       method: "POST",
       headers: getAuthHeaders(),
       body: JSON.stringify({ code: code }) 

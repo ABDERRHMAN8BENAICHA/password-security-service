@@ -19,5 +19,6 @@ class TwoFactorService:
     def verify_code(self, secret: str, code: str):
 
         totp = pyotp.TOTP(secret)
-
-        return totp.verify(code)
+        
+        # Allow for time drift (valid for current, previous, and next 30-second window)
+        return totp.verify(code, valid_window=1)

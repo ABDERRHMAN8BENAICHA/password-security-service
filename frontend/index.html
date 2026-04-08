@@ -1,106 +1,81 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Dashboard | Password Security</title>
-  <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-  <!-- Premium Phosphor Icons -->
-  <script src="https://unpkg.com/@phosphor-icons/web"></script>
-</head>
+  <title>Security Dashboard</title>
+<link rel="stylesheet" href="./style.css">
 <body>
 
 <div class="layout">
 
   <!-- Sidebar -->
+
   <div class="sidebar">
-    <div class="sidebar-header">
-      <i class="ph ph-shield-check"></i> Security
-      <button class="mobile-nav-toggle" onclick="toggleNav()"><i class="ph ph-list"></i></button>
-    </div>
-    <div class="nav-links" id="navLinks">
-      <a href="index.html" class="active"><i class="ph ph-squares-four"></i> Dashboard</a>
-      <a href="analyzer.html"><i class="ph ph-magnifying-glass"></i> Analyzer</a>
-      <a href="generator.html"><i class="ph ph-key"></i> Generator</a>
-      <a href="twofa.html"><i class="ph ph-device-mobile"></i> 2FA</a>
-      <a href="stats.html"><i class="ph ph-chart-bar"></i> Global Stats</a>
-    </div>
-    <div class="sidebar-footer">
-      <i class="ph ph-check-circle" style="color: #22c55e;"></i> v1.0.0 System Secure
-    </div>
+    <h2>🔐 Security</h2>
+    <a href="index.html" class="active">Dashboard</a>
+    <a href="analyzer.html">Analyzer</a>
+    <a href="generator.html">Generator</a>
+    <a href="twofa.html">2FA</a>
   </div>
 
   <!-- Content -->
   <div class="content">
 
-    <h1 class="page-title"><i class="ph ph-terminal-window"></i> Command Center</h1>
 
-    <div class="dashboard-grid">
+<h1>🔐 Password Security Dashboard</h1>
 
-      <!-- Hero Welcome -->
-      <div class="card widget-hero" style="background: linear-gradient(135deg, rgba(56, 189, 248, 0.1), rgba(15, 23, 42, 0.8));">
-        <h2><i class="ph ph-hand-waving"></i> System Overview</h2>
-        <p>Welcome to the central security dashboard. All modules are currently online. From here, you can evaluate your passwords, generate cryptographically secure passphrases, and bind 2FA to your accounts.</p>
-      </div>
+<div class="card">
+  <h2>📌 About the Project</h2>
+  <p>
+    This application helps users evaluate password strength, generate secure passwords,
+    and protect their accounts using modern security practices such as Two-Factor Authentication (2FA).
+  </p>
+</div>
 
-      <!-- Quick Action: Analyzer -->
-      <div class="card widget-action action-card" onclick="window.location.href='analyzer.html'">
-        <i class="ph ph-scan action-card-icon"></i>
-        <h2>Analyze Strength</h2>
-        <p>Inspect passwords and cross-check against global data breaches instantly.</p>
-      </div>
+<div class="card">
+  <h2>⚠️ Why Weak Passwords Are Dangerous</h2>
+  <ul>
+    <li>Easy to guess using brute-force attacks</li>
+    <li>Vulnerable to dictionary attacks</li>
+    <li>Often reused across multiple accounts</li>
+    <li>Leaked passwords can be reused by attackers</li>
+  </ul>
+</div>
 
-      <!-- Quick Action: Generator -->
-      <div class="card widget-action action-card" onclick="window.location.href='generator.html'">
-        <i class="ph ph-password action-card-icon"></i>
-        <h2>Generate Passphrase</h2>
-        <p>Create mathematically impenetrable passphrases and store them into your local vault.</p>
-      </div>
+<div class="card">
+  <h2>🧠 Strong Password Tips</h2>
+  <ul>
+    <li>Use at least 12 characters</li>
+    <li>Mix uppercase, lowercase, numbers, and symbols</li>
+    <li>Avoid personal information (name, birthdate)</li>
+    <li>Use passphrases instead of simple passwords</li>
+    <li>Never reuse the same password</li>
+  </ul>
+</div>
 
-      <!-- Quick Action: 2FA -->
-      <div class="card widget-action action-card" onclick="window.location.href='twofa.html'">
-        <i class="ph ph-fingerprint action-card-icon"></i>
-        <h2>Authenticator 2FA</h2>
-        <p>Scan a QR Code to enable secure time-based secondary authentication protocols.</p>
-      </div>
+<div class="card">
+  <h2>🔐 Protection Methods</h2>
+  <ul>
+    <li>Two-Factor Authentication (2FA)</li>
+    <li>Password managers</li>
+    <li>Hashing algorithms (bcrypt, SHA)</li>
+    <li>Secure APIs and encryption</li>
+  </ul>
+</div>
 
-      <!-- System Status -->
-      <div class="card widget-status">
-        <h2><i class="ph ph-cpu"></i> API Status</h2>
-        <ul style="list-style: none; padding-left: 0;">
-          <li style="display: flex; align-items: center; justify-content: space-between;">
-             <span>FastAPI Backend</span>
-             <span style="color: #22c55e;"><span class="status-indicator"></span> ONLINE</span>
-          </li>
-          <li style="display: flex; align-items: center; justify-content: space-between; margin-top: 15px;">
-             <span>Encryption Algorithm</span>
-             <span style="color: #38bdf8;">SHA-256 / PBKDF2</span>
-          </li>
-          <li style="display: flex; align-items: center; justify-content: space-between; margin-top: 15px;">
-             <span>Global Threat Checking</span>
-             <span style="color: #22c55e;">Active</span>
-          </li>
-        </ul>
-      </div>
+<div class="card">
+  <h2>🚨 Security Advice</h2>
+  <p>
+    Always use different passwords for different accounts. If one account is compromised,
+    others remain safe. Enable 2FA whenever possible and regularly update your passwords.
+  </p>
+</div>
 
-      <!-- Security Feed Terminal -->
-      <div class="card widget-feed" style="padding: 0;">
-        <h2 style="padding: 20px 24px 0 24px;"><i class="ph ph-code"></i> Live Security Log</h2>
-        <div class="terminal" id="terminalLog">
-          <div class="term-line" style="animation-delay: 0.2s;">> Initializing core security systems... OK</div>
-          <div class="term-line" style="animation-delay: 0.6s;">> Bounding crypto libraries... OK</div>
-          <div class="term-line" style="animation-delay: 1.2s; color: #38bdf8;">> Loading API resources via http://127.0.0.1:8000</div>
-          <div class="term-line" style="animation-delay: 1.8s;">> System Handshake Successful.</div>
-          <div class="term-line" style="animation-delay: 2.2s; color: #f8fafc;">> Awaiting User Directives_</div>
-        </div>
-      </div>
-
-    </div>
 
   </div>
 
 </div>
-<script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>

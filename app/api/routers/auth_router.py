@@ -28,6 +28,19 @@ def setup_2fa(user_id: str = Depends(get_current_user), db: Session = Depends(ge
 
     return resp
 
+# Global variable to store the demo secret
+demo_secret_storage = {}
+
+@router.post("/setup-demo", response_model=TwoFASetupResponse)
+def setup_2fa_demo(db: Session = Depends(get_db)):
+    use_case = Setup2FAUseCase()
+    resp = use_case.execute()
+    
+    # Store the secret for verification
+    demo_secret_storage["current"] = resp["secret"]
+    
+    return resp
+
 @router.post("/verify", response_model=TwoFAVerifyResponse)
 def verify_2fa(request: TwoFAVerifyRequest, user_id: str = Depends(get_current_user), db: Session = Depends(get_db)):
     user = db.query(User).filter(User.id == user_id).first()
@@ -41,4 +54,15 @@ def verify_2fa(request: TwoFAVerifyRequest, user_id: str = Depends(get_current_u
         user.two_factor_enabled = True
         db.commit()
 
+    return resp
+
+@router.post("/verify-demo", response_model=TwoFAVerifyResponse)
+def verify_2fa_demo(request: TwoFAVerifyRequest):
+    # Demo mode: use actual TOTP verification
+    if "current" not in demo_secret_storage:
+        raise HTTPException(status_code=400, detail="2FA not setup for demo")
+    
+    use_case = Verify2FAUseCase()
+    resp = use_case.execute(demo_secret_storage["current"], request.code)
+    
     return resp
